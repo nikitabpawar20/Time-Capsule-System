@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Capsule | Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="fa-solid fa-hourglass-half"></i>
+      <span>Capsule.io</span>
+    </div>
+    
+    <nav class="nav-menu">
+      <button id="showComposeBtn" class="active">
+        <i class="fa-solid fa-pen-to-square"></i> <span>Create New</span>
+      </button>
+      <button id="showInboxBtn" style="position: relative;">
+        <i class="fa-solid fa-envelope-open-text"></i> <span>View Inbox</span>
+        <span id="inboxBadge" style="display:none; position:absolute; top:8px; right:10px; background:#ef4444; color:white; border-radius:50%; padding:2px 7px; font-size:11px; font-weight:bold; border:2px solid var(--sidebar-bg);">0</span>
+      </button>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <h2 id="pageTitle">Dashboard</h2>
+        <p id="pageDesc">Send messages to your future self.</p>
+      </div>
+    </header>
+
+    <div class="dashboard-grid">
+      <section class="card compose-card" id="composeForm">
+        <div class="card-header">
+          <i class="fa-solid fa-paper-plane"></i>
+          <h3>Compose Capsule</h3>
+        </div>
+        <div class="form-body">
+          <div class="form-group">
+            <label>Recipient Name</label>
+            <input type="text" id="recipient_name" placeholder="e.g. Future John">
+          </div>
+          <div class="form-group">
+            <label>Your Message</label>
+            <textarea id="message" placeholder="What secrets do you want to tell your future self?"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Unlock Date & Time</label>
+            <input type="datetime-local" id="deliverAt">
+          </div>
+          <button class="primary-btn" id="scheduleBtn" onclick="sendMessage()">
+            <span>Schedule Delivery</span>
+            <i class="fa-solid fa-rocket"></i>
+          </button>
+          <div class="status-container">
+            <p id="status"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card inbox-card" id="inboxSection" style="display: none;">
+        <div class="card-header" style="justify-content: space-between; display: flex;">
+          <span><i class="fa-solid fa-inbox"></i> Delivered Messages</span>
+          <button class="back-link" id="backToCompose" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:600;">
+             <i class="fa-solid fa-arrow-left"></i> Back
+          </button>
+        </div>
+        <div id="deliveredList" class="message-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
